@@ -1,0 +1,1146 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="Puroonjay Bhavsar's portfolio showcasing game development projects, tech stack, and contact information." />
+<meta name="keywords" content="Puroonjay Bhavsar, game developer, portfolio, Unity, Unreal Engine, C#, C++, Blender, projects, tech stack" />
+<link rel="icon" href="favicon.ico" type="image/x-icon" />
+<title>Puroonjay Bhavsar - Portfolio</title>
+<link rel="canonical" href="https://your-portfolio-url.com" />
+<meta property="og:title" content="Puroonjay Bhavsar - Portfolio" />
+<meta property="og:description" content="Portfolio showcasing game development projects, tech stack, and contact information." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://your-portfolio-url.com" />
+<meta property="og:image" content="https://your-portfolio-url.com/Profile.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Puroonjay Bhavsar - Portfolio" />
+<meta name="twitter:description" content="Portfolio showcasing game development projects, tech stack, and contact information." />
+<meta name="twitter:image" content="https://your-portfolio-url.com/Profile.jpg" />
+<title>My Portfolio</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Roboto&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background-color: #121212;
+  color: #ddd;
+  overflow-x: hidden;
+}
+
+  :root {
+    --neon-blue: #31d0f8;
+    --neon-purple: #b86bff;
+    --neon-green: #32ff7e;
+    --dark-bg: #121212;
+  }
+
+  #loading-screen {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    background-color: var(--dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.5em;
+    color: #0ff;
+    letter-spacing: 0.15em;
+    filter: drop-shadow(0 0 10px #0ff);
+    user-select: none;
+    animation: pixelFadeIn 3s forwards;
+  }
+
+  #loading-screen.glitch {
+    animation: glitchEffect 2s infinite;
+  }
+
+  @keyframes pixelFadeIn {
+    0% {
+      opacity: 0;
+      filter: blur(10px);
+      letter-spacing: 0.7em;
+    }
+    70% {
+      opacity: 1;
+      filter: blur(0);
+      letter-spacing: 0.15em;
+    }
+    100% {
+      opacity: 1;
+      filter: blur(0);
+      letter-spacing: 0.15em;
+    }
+  }
+
+  @keyframes glitchEffect {
+    0% {
+      clip-path: inset(0 0 2px 0);
+      transform: translate(0);
+      color: #0ff;
+      text-shadow:
+        2px 0 #b86bff,
+        -2px 0 var(--neon-green);
+    }
+    20% {
+      clip-path: inset(2px 0 0 0);
+      transform: translate(-2px, -2px);
+      color: #32ff7e;
+      text-shadow:
+        -2px 0 var(--neon-blue),
+        2px 0 #b86bff;
+    }
+    40% {
+      clip-path: inset(0 0 1px 0);
+      transform: translate(2px, 2px);
+      color: #b86bff;
+      text-shadow:
+        2px 0 var(--neon-green),
+        -2px 0 #0ff;
+    }
+    60% {
+      clip-path: inset(1px 0 0 0);
+      transform: translate(-1px, 1px);
+      color: #0ff;
+      text-shadow:
+        -2px 0 var(--neon-blue),
+        2px 0 #32ff7e;
+    }
+    80% {
+      clip-path: inset(0 0 3px 0);
+      transform: translate(1px, -1px);
+      color: var(--neon-green);
+      text-shadow:
+        2px 0 #b86bff,
+        -2px 0 var(--neon-blue);
+    }
+    100% {
+      clip-path: inset(0 0 2px 0);
+      transform: translate(0);
+      color: #0ff;
+      text-shadow:
+        2px 0 #b86bff,
+        -2px 0 var(--neon-green);
+    }
+  }
+
+  #bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100vw;
+    min-height: 100vh;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    filter: brightness(0.15) saturate(1.2);
+    object-fit: cover;
+  }
+
+  #sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 70px;
+  height: 100vh;
+  background: rgba(17, 17, 17, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  z-index: 10;
+  transition: width 0.3s ease;
+}
+
+#sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+#sidebar nav a {
+  color: #666;
+  font-size: 1.3rem;
+  text-decoration: none;
+  writing-mode: vertical-rl;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease !important;
+}
+
+
+  #sidebar nav a::after {
+    content: none;
+    position: static;
+    width: 0;
+    height: 0;
+    background: none;
+    transition: none;
+  }
+
+  #sidebar nav a:hover, #sidebar nav a.active {
+  color: var(--neon-blue);
+  transform: scale(1.1);
+}
+
+
+#sidebar nav a:hover::after, #sidebar nav a.active::after {
+  width: 0;
+}
+
+
+  #sidebar nav a:hover {
+    transform: scale(1.15);
+  }
+
+  #content {
+    margin-left: 70px;
+    padding: 2rem 3vw 5rem;
+    max-width: calc(100vw - 70px);
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 2rem 0 6rem;
+    position: relative;
+  }
+section.page {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.5s ease;
+  max-height: 0;
+}
+section.page.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+  max-height: 100vh;
+}
+
+  .fade-enter {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+  }
+
+  .fade-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.8s ease;
+  }
+
+  #intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100vh;
+    color: #0ff;
+    text-align: center;
+    padding: 0 2rem;
+    user-select: none;
+  }
+
+  #intro h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.8rem, 5vw, 5rem);
+    text-shadow:
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue),
+      0 0 30px var(--neon-blue);
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+  }
+
+  #intro p {
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: #88f9ffcc;
+    margin-bottom: 3rem;
+    font-style: italic;
+  }
+
+  #explore-btn {
+    align-self: center;
+    background: none;
+    border: 2.5px solid var(--neon-blue);
+    color: var(--neon-blue);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    padding: 1rem 3rem;
+    border-radius: 40px;
+    cursor: pointer;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      box-shadow 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    box-shadow: 0 0 10px var(--neon-blue);
+  }
+
+  #explore-btn:hover {
+    background-color: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow:
+      0 0 20px var(--neon-blue),
+      0 0 30px var(--neon-green),
+      0 0 40px var(--neon-purple);
+    transform: translateY(-4px) scale(1.05);
+  }
+
+  #about-me {
+    max-width: 900px;
+    margin: 0 auto;
+    color: #bbb;
+  }
+
+  #about-me h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--neon-purple);
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 0 0 5px var(--neon-purple);
+  }
+
+  #about-me p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    margin-bottom: 1.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  #about-me .bio-highlight {
+    color: var(--neon-green);
+    font-weight: 700;
+    text-shadow: 0 0 5px var(--neon-green);
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    border-left: 3px solid var(--neon-green);
+    padding-left: 1.5rem;
+  }
+
+  .timeline-item {
+    color: #aaa;
+    position: relative;
+    cursor: default;
+    transition: color 0.3s ease;
+  }
+
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    background: var(--neon-green);
+    border-radius: 50%;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .timeline-item:hover {
+    color: var(--neon-green);
+  }
+
+  .timeline-item:hover::before {
+    box-shadow:
+      0 0 8px var(--neon-green),
+      0 0 15px var(--neon-green);
+  }
+
+  #tech-stack {
+    max-width: 1000px;
+    margin: 0 auto;
+    color: #ddd;
+  }
+
+  #tech-stack h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--neon-blue);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--neon-blue);
+  }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(120px,1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .tech-card {
+    background: #181818;
+    border-radius: 15px;
+    box-shadow:
+      0 0 10px #111,
+      inset 0 0 5px #222;
+    padding: 15px;
+    text-align: center;
+    color: #bbb;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .tech-card:hover {
+    color: var(--neon-green);
+    box-shadow:
+      0 0 20px var(--neon-green),
+      inset 0 0 10px var(--neon-green);
+    transform: translateY(-8px) scale(1.08);
+  }
+
+  .tech-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 6px #333);
+  }
+
+  .tech-name {
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .tech-desc {
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+    min-height: 3em;
+  }
+
+  #projects {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  #projects h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--neon-purple);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--neon-purple);
+  }
+
+  .projects-grid {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+  }
+
+  .project-card {
+    background: #1b1b1b;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+      0 0 12px #000,
+      0 0 10px #222 inset;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translateY(-10px);
+    box-shadow:
+      0 0 30px var(--neon-purple),
+      0 0 25px var(--neon-green) inset;
+  }
+
+  .project-thumb {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    transition: filter 0.4s ease;
+    filter: brightness(0.85);
+  }
+
+  .project-card:hover .project-thumb {
+    filter: brightness(1.05);
+  }
+
+  .project-info {
+    padding: 1rem 1.4rem;
+    color: #ccc;
+  }
+
+  .project-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: var(--neon-purple);
+    font-size: 1.3rem;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 6px var(--neon-purple);
+  }
+
+  .project-desc {
+    font-size: 0.95rem;
+    color: #bbb;
+    line-height: 1.3;
+    min-height: 3em;
+  }
+
+  .project-video {
+    display: none !important;
+  }
+
+  /* Modal styles for video popup */
+  #video-modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+  }
+
+  #video-modal.active {
+    display: flex;
+  }
+
+  #video-modal video {
+    max-width: 90vw;
+    max-height: 80vh;
+    border-radius: 12px;
+    box-shadow: 0 0 30px #0ff;
+    background-color: #000;
+  }
+
+  #video-modal .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 2.5rem;
+    color: #0ff;
+    cursor: pointer;
+    user-select: none;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.3s ease;
+  }
+
+  #video-modal .close-btn:hover {
+    color: #32ff7e;
+  }
+
+  #contact {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    color: #ccc;
+  }
+
+  #contact h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--neon-green);
+    margin-bottom: 2rem;
+    text-align: center;
+    text-shadow: 0 0 10px var(--neon-green);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+
+  label {
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 6px;
+  }
+
+  input, textarea {
+    background: #1e1e1e;
+    border: 1.8px solid #333;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: #eee;
+    font-size: 1rem;
+    resize: vertical;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  input:focus, textarea:focus {
+    border-color: var(--neon-green);
+    box-shadow:
+      0 0 10px var(--neon-green),
+      inset 0 0 8px var(--neon-green);
+    outline: none;
+  }
+
+  textarea {
+    min-height: 120px;
+  }
+
+  button#send-btn {
+    background: none;
+    border: 2.5px solid var(--neon-green);
+    color: var(--neon-green);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 1rem;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-top: 1rem;
+    letter-spacing: 0.12em;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease,
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+    box-shadow: 0 0 10px var(--neon-green);
+  }
+
+  button#send-btn:hover {
+    background-color: var(--neon-green);
+    color: var(--dark-bg);
+    box-shadow:
+      0 0 20px var(--neon-green),
+      0 0 30px var(--neon-blue),
+      0 0 40px var(--neon-purple);
+    transform: scale(1.05) translateY(-2px);
+  }
+
+  section[data-parallax] {
+    perspective: 1px;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+
+  section[data-parallax] > .parallax-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    transform-origin: center;
+    z-index: -2;
+    will-change: transform;
+    filter: brightness(0.12);
+  }
+
+  @media (max-width: 768px) {
+    html, body {
+      overflow-y: hidden;
+    }
+    #sidebar {
+      width: 60px;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: rgba(17, 17, 17, 0.9);
+      backdrop-filter: blur(10px);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem 0;
+      transition: width 0.3s ease;
+    }
+
+    #sidebar nav {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    #sidebar nav a {
+      color: #666;
+      font-size: 1.1rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      margin: 0;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease !important;
+    }
+
+    #sidebar nav a:hover, #sidebar nav a.active {
+      color: var(--neon-blue);
+      transform: scale(1.1);
+    }
+
+    #content {
+      margin-left: 60px;
+      padding: 1.5rem 2vw 4rem;
+      max-width: calc(100vw - 60px);
+      height: 100vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #sidebar {
+      width: 50px;
+    }
+
+    #sidebar nav {
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+    }
+
+    #sidebar nav a {
+      font-size: 0.9rem;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      margin: 0;
+    }
+
+    #content {
+      margin-left: 50px;
+      padding: 0.8rem 1rem 2.5rem;
+      max-width: calc(100vw - 50px);
+    }
+
+    #intro h1 {
+      font-size: 1.8rem;
+    }
+
+    #intro p {
+      font-size: 0.85rem;
+    }
+
+    button#explore-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.85rem;
+    }
+
+    /* New styles for mobile improvements */
+    #intro > div > img {
+      width: 80px !important;
+      height: 80px !important;
+    }
+
+    #about-me, #tech-stack, #projects, #contact {
+      max-width: 90vw !important;
+      padding: 0 1rem !important;
+    }
+
+    #about-me p {
+      font-size: 1rem !important;
+      line-height: 1.4 !important;
+      margin-bottom: 1rem !important;
+    }
+
+    #tech-stack h2, #projects h2, #contact h2 {
+      font-size: 2rem !important;
+    }
+
+    .project-desc {
+      font-size: 0.85rem !important;
+    }
+
+    .tech-desc {
+      font-size: 0.75rem !important;
+    }
+
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tech-grid {
+      grid-template-columns: repeat(auto-fit,minmax(70px,1fr));
+    }
+  }
+
+  @media (max-width: 360px) {
+    #sidebar {
+      width: 40px;
+    }
+
+    #sidebar nav a {
+      font-size: 0.8rem;
+    }
+
+    #content {
+      margin-left: 40px;
+      padding: 0.6rem 0.8rem 2rem;
+      max-width: calc(100vw - 40px);
+    }
+
+    #intro h1 {
+      font-size: 1.5rem;
+    }
+
+    #intro p {
+      font-size: 0.75rem;
+    }
+
+    button#explore-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.75rem;
+    }
+
+    /* New styles for smaller mobile improvements */
+    #intro > div > img {
+      width: 60px !important;
+      height: 60px !important;
+    }
+
+    #about-me, #tech-stack, #projects, #contact {
+      max-width: 95vw !important;
+      padding: 0 0.5rem !important;
+    }
+
+    #about-me p {
+      font-size: 0.9rem !important;
+      line-height: 1.3 !important;
+      margin-bottom: 0.8rem !important;
+    }
+
+    #tech-stack h2, #projects h2, #contact h2 {
+      font-size: 1.6rem !important;
+    }
+
+    .project-desc {
+      font-size: 0.75rem !important;
+    }
+
+    .tech-desc {
+      font-size: 0.65rem !important;
+    }
+  }
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Puroonjay Bhavsar",
+  "url": "https://your-portfolio-url.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/puroonjay-bhavsar"
+  ],
+  "jobTitle": "Aspiring Game Developer",
+  "description": "Portfolio showcasing game development projects, tech stack, and contact information."
+}
+</script>
+</head>
+<body>
+  <a href="#content" class="skip-link" style="position:absolute;top:-40px;left:0;background:#0ff;color:#121212;padding:8px 16px;z-index:100;transition:top 0.3s;outline-offset: 4px;" onfocus="this.style.top='0';" onblur="this.style.top='-40px';">Skip to main content</a>
+  <!-- Loading Screen -->
+  <div id="loading-screen">WELCOME</div>
+
+  <!-- Background Video -->
+  <video id="bg-video" autoplay muted loop playsinline preload="auto">
+    <source src="https://cdn.pixabay.com/download/video/2023/03/08/video_64966ad2c8.mp4?filename=video-game-dev-software-programmer-computer-7443.mp4" type="video/mp4">
+    Sorry, your browser doesn't support embedded videos.
+  </video>
+
+  <!-- Sidebar Navigation -->
+  <aside id="sidebar" role="navigation" aria-label="Primary Navigation">
+    <nav>
+      <a href="#intro" data-nav-item>Intro</a>
+      <a href="#about-me" data-nav-item>About</a>
+      <a href="#tech-stack" data-nav-item>Tech</a>
+      <a href="#projects" data-nav-item>Projects</a>
+      <a href="#contact" data-nav-item>Contact</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="content" role="main" tabindex="-1">
+    <!-- Intro Section -->
+    <section id="intro" tabindex="0">
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+      <img src="Profile.jpg" alt="Profile Picture" loading="lazy" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover; box-shadow: 0 0 10px var(--neon-blue);" />
+      <h1>Crafting Worlds, One Pixel at a Time <br>-Puroonjay Bhavsar</h1>
+      <p>Welcome to my digital realm where creativity meets technology.</p>
+      <button id="explore-btn" aria-label="Explore my work">Explore My Work</button>
+    </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about-me" tabindex="0" aria-label="About me section" aria-describedby="about-desc">
+      <h2>About Me</h2>
+      <p id="about-desc">
+        Hey, I'm <span class="bio-highlight">Puroonjay</span>—a <span class="bio-highlight">technologist and aspiring game developer</span> with a love for gaming that's been with me since my 12th grade. Back then, I was just another game enthusiast, jumping into different worlds, mastering mechanics, and experiencing the magic of storytelling. But over time, something changed—my focus shifted from just playing games to wanting to create them. I realized I didn’t just want to experience great games; I wanted to contribute to the gaming industry and build immersive experiences myself.  
+        <br>In <span class="bio-highlight">2024</span>, I took my passion to the next level by pursuing a BTech at Parul University, diving deep into <span class="bio-highlight">technology and innovation</span>. By <span class="bio-highlight">2025</span>, I started actively exploring game development—learning, experimenting, and shaping my creative vision.  
+        <br>With a strong foundation and an insatiable curiosity, I'm driven to push boundaries and craft games that truly resonate with players.  
+    </p>
+      <div class="timeline" aria-label="Career milestones">
+        <div class="timeline-item" tabindex="0" title="Started education">2024: Began BTech at Parul University</div>
+        <div class="timeline-item" tabindex="0" title="Dived in game">2025: Explored game development</div>
+      </div>
+
+    </section>
+    
+    <!-- Tech Stack Section -->
+    <section id="tech-stack" tabindex="0" aria-label="Technologies and tools I use">
+      <h2>Tech Stack</h2>
+      <div class="tech-grid">
+        <div class="tech-card" tabindex="0" aria-describedby="desc-unity">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unity/unity-original.svg" alt="Unity Logo" />
+          <div class="tech-name">Unity</div>
+          <div class="tech-desc" id="desc-unity">Expert in Unity 3D for cross-platform game development.</div>
+        </div>
+        <div class="tech-card" tabindex="0" aria-describedby="desc-unreal">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/unrealengine/unrealengine-original.svg" alt="Unreal Engine Logo" />
+          <div class="tech-name">Unreal Engine</div>
+          <div class="tech-desc" id="desc-unreal">Proficient with Unreal Engine’s Blueprint and C++.</div>
+        </div>
+        <div class="tech-card" tabindex="0" aria-describedby="desc-csharp">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C# Logo" />
+          <div class="tech-name">C#</div>
+          <div class="tech-desc" id="desc-csharp">Strong command of C# for game scripting and tools.</div>
+        </div>
+        <div class="tech-card" tabindex="0" aria-describedby="desc-cpp">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++ Logo" />
+          <div class="tech-name">C++</div>
+          <div class="tech-desc" id="desc-cpp">Experienced in C++ for performance-critical game systems.</div>
+        </div>
+        <div class="tech-card" tabindex="0" aria-describedby="desc-git">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git Logo" />
+          <div class="tech-name">Git</div>
+          <div class="tech-desc" id="desc-git">Version control and collaborative workflows using Git.</div>
+        </div>
+        <div class="tech-card" tabindex="0" aria-describedby="desc-blender">
+          <img class="tech-icon" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/blender/blender-original.svg" alt="Blender Logo" />
+          <div class="tech-name">Blender</div>
+          <div class="tech-desc" id="desc-blender">3D modeling and animations with Blender.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" tabindex="0" aria-label="Featured projects">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card" tabindex="0" aria-labelledby="proj1-title" aria-describedby="proj1-desc">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=640&q=80" alt="Nebula Rift game screenshot"/>
+          <video class="project-video" muted loop preload="none" playsinline>
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.webm" type="video/webm" />
+            <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4" />
+          </video>
+          <div class="project-info">
+            <h3 id="proj1-title" class="project-title">Nebula Rift</h3>
+            <p id="proj1-desc" class="project-desc">A sci-fi exploration game featuring procedurally generated galaxies and spaceship customization.</p>
+          </div>
+        </article>
+
+        <article class="project-card" tabindex="0" aria-labelledby="proj2-title" aria-describedby="proj2-desc">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=640&q=80" alt="Cyber Runner game screenshot"/>
+          <video class="project-video" muted loop preload="none" playsinline>
+            <source src="https://cdn.videvo.net/videvo_files/video/free/2019-08/small_watermarked/190726_02_Motion_06_preview.webm" type="video/webm" />
+            <source src="https://cdn.videvo.net/videvo_files/video/free/2019-08/small_watermarked/190726_02_Motion_06_preview.mp4" type="video/mp4" />
+          </video>
+          <div class="project-info">
+            <h3 id="proj2-title" class="project-title">Cyber Runner</h3>
+            <p id="proj2-desc" class="project-desc">Fast-paced endless runner set in a neon cyberpunk cityscape with dynamic obstacles.</p>
+          </div>
+        </article>
+
+        <article class="project-card" tabindex="0" aria-labelledby="proj3-title" aria-describedby="proj3-desc">
+          <img class="project-thumb" src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=640&q=80" alt="Arcane Tactics game screenshot"/>
+          <video class="project-video" muted loop preload="none" playsinline>
+            <source src="https://storage.coverr.co/videos/birds-in-flight-on-a-beach-5740?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1NzQwIiwiaWF0IjoxNjgwMzMzNDY5LCJleHAiOjE2ODA5MzEzNjksImZpbGUiOiJiaXJkc19pbl9mbGlnaHRfb25fYS1iZWFjaC01NzQwLmpwZyJ9.BsWYFQxDFTr2_y-oZLXLFwyDVEVxgcUjxNpUUis5G4I" type="video/mp4" />
+          </video>
+          <div class="project-info">
+            <h3 id="proj3-title" class="project-title">Arcane Tactics</h3>
+            <p id="proj3-desc" class="project-desc">Turn-based tactics game with a magical fantasy setting and rich character progression.</p>
+          </div>
+        </article>
+        
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+<section id="contact" tabindex="0" aria-label="Contact me" style="text-align: center;">
+  <h2>Contact</h2>
+  <button id="linkedin-btn" style="background: none; border: 2.5px solid var(--neon-green); color: var(--neon-green); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; padding: 1rem 2rem; border-radius: 40px; cursor: pointer; letter-spacing: 0.12em; transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 0 10px var(--neon-green);" onmouseover="this.style.backgroundColor='var(--neon-green)'; this.style.color='#121212'; this.style.boxShadow='0 0 20px var(--neon-green), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-purple)';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--neon-green)'; this.style.boxShadow='0 0 10px var(--neon-green)';" onclick="window.open('https://www.linkedin.com/in/puroonjay-bhavsar', '_blank', 'noopener,noreferrer')">
+    Connect on LinkedIn
+  </button> <br> <br>
+  <button id="email-btn" style="background: none; border: 2.5px solid var(--neon-green); color: var(--neon-green); font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem; padding: 1rem 2rem; border-radius: 40px; cursor: pointer; letter-spacing: 0.12em; transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 0 10px var(--neon-green);" onmouseover="this.style.backgroundColor='var(--neon-green)'; this.style.color='#121212'; this.style.boxShadow='0 0 20px var(--neon-green), 0 0 30px var(--neon-blue), 0 0 40px var(--neon-purple)';" onmouseout="this.style.backgroundColor='transparent'; this.style.color='var(--neon-green)'; this.style.boxShadow='0 0 10px var(--neon-green)';" onclick="window.open('https://mail.google.com/mail/?view=cm&fs=1&to=puroonjaybhavsar8623@gmail.com', '_blank', 'noopener,noreferrer')">
+    Email me
+  </button>
+</section>
+  </main>
+
+  <script>
+
+window.addEventListener('load', () => {
+  const loader = document.getElementById('loading-screen');
+  loader.classList.add('glitch');
+
+  setTimeout(() => {
+    loader.style.transition = 'opacity 0.8s ease';
+    loader.style.opacity = 0;
+    setTimeout(() => loader.remove(), 800);
+  }, 3000);
+});
+
+const navLinks = document.querySelectorAll('#sidebar nav a[data-nav-item]');
+const sections = [...navLinks].map(a => document.querySelector(a.getAttribute('href')));
+
+function activateNavLink() {
+  const scrollPos = window.scrollY + window.innerHeight / 2;
+
+  sections.forEach((section, idx) => {
+    const top = section.offsetTop;
+    const bottom = top + section.offsetHeight;
+    
+    if (scrollPos >= top && scrollPos < bottom) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      navLinks[idx].classList.add('active');
+    }
+  });
+}
+
+window.addEventListener('load', () => {
+  navLinks.forEach(link => link.classList.remove('active'));
+});
+
+navLinks.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(link.getAttribute('href'));
+
+    if (target) {
+      target.scrollIntoView({
+        behavior: 'smooth'
+      });
+    } else {
+      console.error("Target section not found for:", link.getAttribute('href'));
+    }
+  });
+});
+
+window.addEventListener('scroll', activateNavLink);
+activateNavLink();
+
+document.getElementById('explore-btn').addEventListener('click', () => {
+  const projectsSection = document.getElementById('projects');
+  projectsSection.scrollIntoView({
+    behavior: 'smooth'
+  });
+});
+
+function reactiveHoverEffect(container, maxTranslate = 12) {
+  container.addEventListener('mousemove', e => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width/2;
+    const y = e.clientY - rect.top - rect.height/2;
+
+    const rotateX = (-y / (rect.height/2)) * maxTranslate;
+    const rotateY = (x / (rect.width/2)) * maxTranslate;
+
+    container.style.transform = `perspective(600px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    container.style.transition = 'transform 0.1s ease';
+  });
+
+  container.addEventListener('mouseleave', () => {
+    container.style.transform = 'perspective(600px) rotateX(0) rotateY(0) scale(1)';
+  });
+}
+
+document.querySelectorAll('.project-card, .tech-card').forEach(card => {
+  reactiveHoverEffect(card, 10);
+});
+
+// Video modal popup logic
+const videoModal = document.createElement('div');
+videoModal.id = 'video-modal';
+videoModal.innerHTML = `
+  <span class="close-btn" aria-label="Close video popup" role="button" tabindex="0">&times;</span>
+  <video controls autoplay></video>
+`;
+document.body.appendChild(videoModal);
+
+const modalVideo = videoModal.querySelector('video');
+const closeBtn = videoModal.querySelector('.close-btn');
+
+function openVideoModal(videoSrc) {
+  modalVideo.src = videoSrc;
+  videoModal.classList.add('active');
+  modalVideo.play();
+}
+
+function closeVideoModal() {
+  modalVideo.pause();
+  modalVideo.currentTime = 0;
+  modalVideo.src = '';
+  videoModal.classList.remove('active');
+}
+
+closeBtn.addEventListener('click', closeVideoModal);
+videoModal.addEventListener('click', (e) => {
+  if (e.target === videoModal) {
+    closeVideoModal();
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && videoModal.classList.contains('active')) {
+    closeVideoModal();
+  }
+});
+
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    const video = card.querySelector('video source[type="video/mp4"]');
+    if (video && video.src) {
+      openVideoModal(video.src);
+    } else {
+      console.error('No video source found for this project.');
+    }
+  });
+});
+
+document.getElementById('linkedin-btn').addEventListener('click', () => {
+  window.open('https://www.linkedin.com/in/puroonjay-bhavsar', '_blank');
+});
+document.getElementById('email-btn').addEventListener('click', () => {
+  window.open('https://mail.google.com/mail/?view=cm&fs=1&to=puroonjaybhavsar8623@gmail.com', '_blank');
+});
+
+const bgVideo = document.getElementById('bg-video');
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const scale = 1 + Math.min(scrollY / 6000, 0.05);
+  bgVideo.style.transform = `translate(-50%, -50%) scale(${scale})`;
+});
+</script>
+</body>
+</html>
